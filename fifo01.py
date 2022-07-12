@@ -1,6 +1,6 @@
 import csv
 import pandas as pd
-df = pd.read_csv('ArtyEth_trades.csv')
+df = pd.read_csv('55ArtyEth_trades.csv')
 
 
 side = df['Side'] ##get side buy or sell
@@ -14,8 +14,8 @@ temp = len(side) - 1 ## want to find how many data we have
 
 i = temp
 
-stock_amount = [0]*999 ##stock amount is stock size when buying seperate by time when you buy
-stock_price = [0]*999
+stock_amount = [0]*9999 ##stock amount is stock size when buying seperate by time when you buy
+stock_price = [0]*9999
 
 j = temp
 
@@ -59,7 +59,7 @@ while(i >= 0):
             #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             profit = real + profit
-            #print("real = ", real)
+            print("real = ", real)
             stock_amount[j] = stock_amount[j] - size[i]  ### reduce stock[j] because sold out for size[i]
             #print("stock_amount after sell = ", stock_amount[j])
         if size[i] > stock_amount[j] and stock_amount[j] != 9999:
@@ -70,7 +70,7 @@ while(i >= 0):
             #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             profit = real + profit
-            #print("real01 = ", real)
+            print("real01 = ", real)
             temp = size[i] - stock_amount[j]
             #print("over size = ", temp)
             stock_amount[j] = 9999 ## we don't need to use this array anymore
@@ -78,7 +78,7 @@ while(i >= 0):
             if temp < stock_amount[j-1]:
                 real = (price[i]*temp) - (temp * stock_price[j-1])
                 profit = real + profit
-                #print("real02 = ", real)
+                print("real02 = ", real)
                 stock_amount[j-1] = stock_amount[j-1] - temp
                 j = j - 1
             #print("stock_amount after sell = ", stock_amount[j])
@@ -90,6 +90,7 @@ while(i >= 0):
             #print("stock price = ", stock_price[j])
             #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
+            print("real = ", real)
             profit = real + profit
             stock_amount[j] = 9999
             j = j - 1
@@ -98,7 +99,9 @@ while(i >= 0):
     
     i = i - 1
 total = 0
+temp = len(side) - 1
 i = temp
+
 while (i >= 0):
     if stock_amount[i] != 0 and stock_amount[i] != 9999:
         total = stock_amount[i] + total
