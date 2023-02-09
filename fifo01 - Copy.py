@@ -51,55 +51,51 @@ print("fee LTC = ", fee_second)
 while(i >= 0):
     if side[i] == 'Sell': ### 3 scenerio 01 is size[i] < stock_amount[j] 02 size[i] = stock_amount[j] 03 size[i] > stock_amount[j]
         #print("J = ",j)
-        if size[i] < stock_amount[j] and stock_amount[j] != 9999 and price[i] > stock_price[j]: #stock_amount 9999 is no more stock left at this array
-            print("size < stock amount")
-            print("size = ", size[i])
-            print("at price", price[i])
-            print("stock price = ", stock_price[j])
-            print("stock amount = ", stock_amount[j])
+        if size[i] < stock_amount[j] and stock_amount[j] != 9999: #stock_amount 9999 is no more stock left at this array
+            #print("size < stock amount")
+            #print("size = ", size[i])
+            #print("at price", price[i])
+            #print("stock price = ", stock_price[j])
+            #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             profit = real + profit
             print("real = ", real)
             stock_amount[j] = stock_amount[j] - size[i]  ### reduce stock[j] because sold out for size[i]
-            print("stock_amount after sell = ", stock_amount[j])
-            print("\n")
-        if size[i] > stock_amount[j] and stock_amount[j] != 9999 and price[i] > stock_price[j]:
-            print("size > stock amount")
-            print("size = ", size[i])
-            print("at price", price[i])
-            print("stock price = ", stock_price[j])
-            print("stock amount = ", stock_amount[j])
+            #print("stock_amount after sell = ", stock_amount[j])
+        if size[i] > stock_amount[j] and stock_amount[j] != 9999:
+            #print("size > stock amount")
+            #print("size = ", size[i])
+            #print("at price", price[i])
+            #print("stock price = ", stock_price[j])
+            #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             profit = real + profit
             print("real01 = ", real)
             temp = size[i] - stock_amount[j]
-            print("over size = ", temp)
+            #print("over size = ", temp)
             stock_amount[j] = 9999 ## we don't need to use this array anymore
-            print("stock amount 02 = ",stock_amount[j-1])
+            #print("stock amount 02 = ",stock_amount[j-1])
             if temp < stock_amount[j-1]:
                 real = (price[i]*temp) - (temp * stock_price[j-1])
                 profit = real + profit
                 print("real02 = ", real)
                 stock_amount[j-1] = stock_amount[j-1] - temp
                 j = j - 1
-            print("stock_amount after sell = ", stock_amount[j])
-            print("stock_amount02 after sell = ", stock_amount[j-1])
-            print("\n")
-        if size[i] == stock_amount[j] and price[i] > stock_price[j]:
-            print("size == stock amount")
-            print("size = ", size[i])
-            print("at price", price[i])
-            print("stock price = ", stock_price[j])
-            print("stock amount = ", stock_amount[j])
+            #print("stock_amount after sell = ", stock_amount[j])
+            #print("stock_amount02 after sell = ", stock_amount[j-1])
+        if size[i] == stock_amount[j]:
+            #print("size == stock amount")
+            #print("size = ", size[i])
+            #print("at price", price[i])
+            #print("stock price = ", stock_price[j])
+            #print("stock amount = ", stock_amount[j])
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             print("real = ", real)
             profit = real + profit
             stock_amount[j] = 9999
             j = j - 1
-            print("realised profit = ", profit)
-            print("i = ",i)
-            print("\n")
-        print("profit = ", profit)
+    #print("realised profit = ", profit)
+    #print("i = ",i)
     
     i = i - 1
 total = 0
@@ -114,13 +110,3 @@ print("total exposure",total)
 print("total exposure - fee (secondary) = ",total - fee_second)
 print("profit = ", profit)
 print("net profit = ", profit - fee_main)
-print("\n")
-##show order left
-i = temp
-while(i >= 0):
-    
-    if side[i] == 'Buy':
-        print("stock buy amount",stock_amount[i])
-        print("stock price ", stock_price[i])
-        print("i = ", i)
-        i = i - 1
