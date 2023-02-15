@@ -46,6 +46,8 @@ while (ks >= 0):
     
 print("fee USDT = ",fee_main)
 print("fee LTC = ", fee_second)
+print("i = ", i)
+print("j = ", j)
 
 #######################
 while(i >= 0):
@@ -63,6 +65,10 @@ while(i >= 0):
             stock_amount[j] = stock_amount[j] - size[i]  ### reduce stock[j] because sold out for size[i]
             print("stock_amount after sell = ", stock_amount[j])
             print("\n")
+            i = i - 1
+            
+
+            
         if size[i] > stock_amount[j] and stock_amount[j] != 9999 and price[i] > stock_price[j]:
             print("size > stock amount")
             print("size = ", size[i])
@@ -72,21 +78,15 @@ while(i >= 0):
             real = (price[i]*size[i]) - (size[i] * stock_price[j])
             profit = real + profit
             print("real01 = ", real)
-            temp = size[i] - stock_amount[j]
+            print("size before sell")
+            print("size after sell", size[i])
             print("over size = ", temp)
             stock_amount[j] = 9999 ## we don't need to use this array anymore
-            print("stock amount 02 = ",stock_amount[j-1])
-            if temp < stock_amount[j-1]:
-                real = (price[i]*temp) - (temp * stock_price[j-1])
-                profit = real + profit
-                print("real02 = ", real)
-                stock_amount[j-1] = stock_amount[j-1] - temp
-                j = j - 1
-            print("stock_amount after sell = ", stock_amount[j])
-            print("stock_amount02 after sell = ", stock_amount[j-1])
-            print("\n")
-            
-        if size[i] == stock_amount[j] and price[i] > stock_price[j]:
+            temp = size[i] - stock_amount[j]
+            temp2 = size[i]
+            size[i] = temp2 - temp #reduce size in size[i]
+        
+        if size[i] == stock_amount[j] and price[i] > stock_price[j] and stock_amount[j] != 9999:
             print("size == stock amount")
             print("size = ", size[i])
             print("at price", price[i])
@@ -96,82 +96,25 @@ while(i >= 0):
             print("real = ", real)
             profit = real + profit
             stock_amount[j] = 9999
+            temp2 = size[i]
+            size[i] = temp2
             j = j - 1
             print("realised profit = ", profit)
             print("i = ",i)
             print("\n")
-
-        if price[i] < stock_price[j]:
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("price < stock price")
-            print("j = ", j)
-            print("i = ", i)
-            j2 = j
-            while(i >= 0):
-                print("running loop find price[i] < stock_price[j]")
-                if price[i] > stock_price[j2]:
-                    print("Found price[i] > stock_price")
-                    print("stock price = ", stock_price[j2])
-                    print("price = ", price[i])
-
-
-                    if size[i] < stock_amount[j2] and stock_amount[j2] != 9999: #stock_amount 9999 is no more stock left at this array
-                        print("size < stock amount")
-                        print("size = ", size[i])
-                        print("at price", price[i])
-                        print("stock price = ", stock_price[j2])
-                        print("stock amount = ", stock_amount[j2])
-                        real = (price[i]*size[i]) - (size[i] * stock_price[j2])
-                        profit = real + profit
-                        print("real = ", real)
-                        stock_amount[j] = stock_amount[j] - size[i]  ### reduce stock[j] because sold out for size[i]
-                        print("stock_amount after sell = ", stock_amount[j])
-                        print("\n")
-                    if size[i] > stock_amount[j2] and stock_amount[j2] != 9999:
-                        print("size > stock amount")
-                        print("size = ", size[i])
-                        print("at price", price[i])
-                        print("stock price = ", stock_price[j2])
-                        print("stock amount = ", stock_amount[j2])
-                        real = (price[i]*size[i]) - (size[i] * stock_price[j2])
-                        profit = real + profit
-                        print("real01 = ", real)
-                        temp = size[i] - stock_amount[j2]
-                        print("over size = ", temp)
-                        stock_amount[j2] = 9999 ## we don't need to use this array anymore
-                        print("find next stock_amount")
-                       
-                        
-                    if size[i] == stock_amount[j]:
-                        print("size == stock amount")
-                        print("size = ", size[i])
-                        print("at price", price[i])
-                        print("stock price = ", stock_price[j])
-                        print("stock amount = ", stock_amount[j])
-                        real = (price[i]*size[i]) - (size[i] * stock_price[j])
-                        print("real = ", real)
-                        profit = real + profit
-                        stock_amount[j] = 9999
-                        j = j - 1
-                        print("realised profit = ", profit)
-                        print("i = ",i)
-                        print("\n")
-
-
-                    
-                    break
-                j2 = j2 - 1
-        print("profit = ", profit)
+            i = i - 1
     
-    i = i - 1
+        #loop find prrice i > stock_price not farther array than price[i]
+        if price[i] < stock_price[j]:
+            print("fiding price < stock price")
+            j = j - 1
+                
+    if side[i] == 'Buy':
+        print("side = buy")
+        i = i - 1
+    print("i = ", i)
+    print("j = ", j)
+    
 total = 0
 temp = len(side) - 1
 i = temp
