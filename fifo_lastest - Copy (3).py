@@ -76,7 +76,7 @@ for i in range(tempi):
                         temp_stock = size[j]
                         temp_j = j
                         
-                    if temp_price < price[j] and size[j] != 9999:
+                    if temp_price < price[j] and price[j] != 9999:
                         print("temp price < price")
                         print("temp price", temp_price)
                         temp_price = price[j]
@@ -86,14 +86,11 @@ for i in range(tempi):
                 j = j + 1
                 
                 print("finaly temp price = ", temp_price)
-                print("fnaly temp stock = ", temp_stock)
-                print("price [j] = ", price[temp_j])
-                print("size [j] = ", size[temp_j])
                 if size[i] < size[temp_j] and size[i] != 9999 and price[i] > price[temp_j]:
                     print("size < stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
-                    print("stock price = ", price[temp_j])
+                    print("stock price = ", price[j])
                     print("stock amount = ", size[temp_j])
                     real = (price[i]*size[i]) - (size[i] * price[temp_j])
                     profit = real + profit
@@ -128,24 +125,22 @@ for i in range(tempi):
                     print("size > stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
-                    print("stock price = ", price[temp_j])
+                    print("stock price = ", price[j])
                     print("stock amount = ", size[temp_j])
                     real = (price[i]*size[i]) - (size[i] * price[temp_j])
                     profit = real + profit
                     print("real01 = ", real)
                     print("size before sell")
-                    print("size before sell", size[i])
+                    print("size after sell", size[i])
                     
+                        
+                    size[temp_j] = 9999 ## we don't need to use this array anymore
                     temp = size[i] - size[temp_j]
                     temp2 = size[i]
-                    #size[i] = temp2 - temp #reduce size in size[i]
-                    size[i] = temp #reduce size in size[i]
+                    size[i] = temp2 - temp #reduce size in size[i]
                     print("over size = ", temp)
                     print("size[i] = ", size[i])
-                    print("stock_amount before sell = ", size[temp_j])
-                    size[temp_j] = 9999 ## we don't need to use this array anymore
                     print("stock_amount after sell = ", size[temp_j])
-                    print("i before i -", i)
                     i = i - 1
                     print("\n")
                     ks = 1
@@ -172,16 +167,11 @@ for i in range(tempi):
                             print("temp stock = ", temp_stock)
                     j = j + 1
                 print("finaly temp price = ", temp_price)
-                print("fnaly temp stock = ", temp_stock)
-                print("price [j] = ", price[temp_j])
-                print("size [j] = ", size[temp_j])
-                print("j = ", j)
-                print("temp j = ", temp_j)
                 if size[i] < size[temp_j] and size[i] != 9999:
                     print("size < stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
-                    print("stock price = ", price[temp_j])
+                    print("stock price = ", price[j])
                     print("stock amount = ", size[temp_j])
                     real = (price[i]*size[i]) - (size[i] * price[temp_j])
                     profit = real + profit
@@ -207,10 +197,6 @@ for i in range(tempi):
                     print("i = ",i)
                     print("size[i] = ", size[i])
                     print("stock_amount after sell = ", size[temp_j])
-                    price[j] = 9999
-                    price[i] = 9999
-                    print("make price j and i = 9999", price[j])
-                    print("price i = 9999", price[i])
                     
                         
 
@@ -218,24 +204,21 @@ for i in range(tempi):
                     print("size > stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
-                    print("stock price = ", price[temp_j])
+                    print("stock price = ", price[j])
                     print("stock amount = ", size[temp_j])
                     real = (price[i]*size[i]) - (size[i] * price[temp_j])
                     profit = real + profit
                     print("real01 = ", real)
                     print("size before sell")
-                    print("size before sell", size[i])
-                
+                    print("size after sell", size[i])
+                        
+                    size[temp_j] = 9999 ## we don't need to use this array anymore
                     temp = size[i] - size[temp_j]
                     temp2 = size[i]
-                    #size[i] = temp2 - temp #reduce size in size[i]
-                    size[i] = temp #reduce size in size[i]
+                    size[i] = temp2 - temp #reduce size in size[i]
                     print("over size = ", temp)
                     print("size[i] = ", size[i])
-                    print("stock_amount before sell = ", size[temp_j])
-                    size[temp_j] = 9999 ## we don't need to use this array anymore
                     print("stock_amount after sell = ", size[temp_j])
-                    print("i before i -", i)
                     i = i - 1
                     print("\n")
                 
@@ -274,10 +257,6 @@ for i in range(tempi):
                         temp_j = j
                 j = j + 1
             print("finaly temp price = ", temp_price)
-            print("fnaly temp stock = ", temp_stock)
-            print("price [j] = ", price[temp_j])
-            print("size [j] = ", size[temp_j])
-            
             if size[i] < size[temp_j] and size[i] != 9999:
                 print("size < stock amount")
                 print("size = ", size[i])
@@ -319,18 +298,16 @@ for i in range(tempi):
                 real = (price[i]*size[i]) - (size[i] * price[temp_j])
                 profit = real + profit
                 print("real01 = ", real)
-                print("size before sell", size[i])
-                
+                print("size before sell")
+                print("size after sell", size[i])
+                    
+                size[temp_j] = 9999 ## we don't need to use this array anymore
                 temp = size[i] - size[temp_j]
                 temp2 = size[i]
-                #size[i] = temp2 - temp #reduce size in size[i]
-                size[i] = temp #reduce size in size[i]
+                size[i] = temp2 - temp #reduce size in size[i]
                 print("over size = ", temp)
                 print("size[i] = ", size[i])
-                print("stock_amount before sell = ", size[temp_j])
-                size[temp_j] = 9999 ## we don't need to use this array anymore
                 print("stock_amount after sell = ", size[temp_j])
-                print("i before i -", i)
                 i = i - 1
                 print("\n")
 
