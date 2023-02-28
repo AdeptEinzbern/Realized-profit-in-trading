@@ -19,7 +19,7 @@ fee_main = 0.1  # The percentage fee charged for each transaction (assumes maker
 fee_second = 0.1  # The percentage fee charged for each transaction (assumes maker and taker fees are the same).
 i = 0  # The index of the current sell transaction.
 j = 0  # The index of the current buy transaction.
-fix_step = 0.1  # The minimum price difference between two transactions (close positive).
+fix_step = 0.250  # The minimum price difference between two transactions (close positive).
 
 # Loop through all sell transactions.
 
@@ -64,7 +64,7 @@ while i <= tempi:
                 print("fnaly temp stock = ", temp_stock)
                 print("price [j] = ", price[temp_j])
                 print("size [j] = ", size[temp_j])
-                if size[i] < size[temp_j] and size[i] != 9999 and price[i] > price[temp_j] and size[temp_j] != 9999 and j == i:
+                if size[i] < size[temp_j] and size[i] != 9999 and price[i]+fix_step > price[temp_j] and size[temp_j] != 9999 and j == i:
                     print("size < stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
@@ -89,7 +89,7 @@ while i <= tempi:
                     
                     ks = 1
 
-                if size[i] == size[temp_j] and size[temp_j] != 9999 and size[i] != 9999 and price[i] > price[temp_j] and j == i:
+                if size[i] == size[temp_j] and size[temp_j] != 9999 and size[i] != 9999 and price[i]+fix_step > price[temp_j] and j == i:
                     print("size == stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
@@ -114,7 +114,7 @@ while i <= tempi:
                     ks = 1
                         
 
-                if size[i] > size[temp_j] and size[temp_j] != 9999 and size[i] != 9999 and price[i] > price[temp_j] and j == i:
+                if size[i] > size[temp_j] and size[temp_j] != 9999 and size[i] != 9999 and price[i]+fix_step > price[temp_j] and j == i:
                     print("size > stock amount")
                     print("size = ", size[i])
                     print("at price", price[i])
