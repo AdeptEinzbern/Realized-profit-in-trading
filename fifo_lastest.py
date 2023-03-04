@@ -287,17 +287,17 @@ while i <= tempi:
     print("\n")
     i = i + 1
 
-for i in range(tempi):
-    if side[i] == "Buy":
-        print("side = ",side[i])
-        print("price = ",price[i])
-        print("size = ", size[i])
-        print("\n")
-i = 0
-for i in range(tempi):
-    if side[i] == "Sell":
-        print("side = ",side[i])
-        print("price = ",price[i])
-        print("size = ", size[i])
-        print("\n")
+#for i in range(tempi):
+    #if side[i] == "Buy":
+        #print("side = ",side[i])
+        #print("price = ",price[i])
+        #print("size = ", size[i])
+        #print("\n")
+#i = 0
+#for i in range(tempi):
+    #if side[i] == "Sell":
+        #print("side = ",side[i])
+        #print("price = ",price[i])
+        #print("size = ", size[i])
+        #print("\n")
 
